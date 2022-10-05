@@ -1,9 +1,9 @@
-#pragma once
-
 #include <string>
 #include <vector>
 
 #include <map>
+
+using namespace std;
 
 class trie_t {
 public:
@@ -17,13 +17,13 @@ public:
    * Insert specified string
    * @param str
    */
-  void insert(const std::string &str);
+  void insert(const string &str);
   /**
    * Remove specified string
    * @param str
    * @return return true if specified string was in container
    */
-  bool erase(const std::string &str);
+  bool erase(const string &str);
   /**
    * Made your container empty
    */
@@ -33,24 +33,24 @@ public:
    * @param str
    * @return true if there is at least one specified string in your container
    */
-  bool find(const std::string &str) const;
+  bool find(const string &str) const;
   /**
    * @param prefix
    * @return number of strings which starts with specified prefix in your container
    */
-  size_t count_with_prefix(const std::string &prefix) const;
+  size_t count_with_prefix(const string &prefix) const;
 
   /**
    * IMAGINE that you sort all strings in you container in lexicographic order.
    * You should return string on position index in this order
    * @param index
    */
-  std::string operator[](size_t index) const;
+  string operator[](size_t index) const;
 
   /**
    * @return All strings from your container in lexicographic order.
    */
-  std::vector<std::string> to_vector() const;
+  vector<string> to_vector() const;
 
   /**
    * @return Number of strings in container
@@ -68,5 +68,10 @@ public:
   void swap(trie_t &other);
 
 private:
+  size_t tree_size;
+  size_t string_end_count;
 
+  map<char, trie_t> children;
+
+  const trie_t *check_in(const string &str) const;
 };
